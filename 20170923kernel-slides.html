@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="矢吹幸治(yabuki@netfort.gr.jp)">
+  <title>Linux Kernel の勉強って何だ?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Linux Kernel の勉強って何だ?</h1>
+  <p class="author">矢吹幸治(yabuki@netfort.gr.jp)</p>
+  <p class="date">2017/09/23</p>
+</section>
+
+<section><section id="こんにちは" class="titleslide slide level1"><h1>こんにちは</h1></section></section>
+<section><section id="debian-gnulinux-方面から来ました-矢吹です" class="titleslide slide level1"><h1>Debian GNU/Linux </br>方面から来ました。 </br></br>矢吹です。</h1></section></section>
+<section><section id="なんでやねん" class="titleslide slide level1"><h1>なんでやねん!?</h1></section></section>
+<section><section id="kernelというgenericな話を私がするのは" class="titleslide slide level1"><h1>KernelというGenericな話を私がするのは?</h1></section><section class="slide level2">
+
+<p>最初に質問は随時受け付けますが、時間の関係があるので、時間がかかりそうな質問は後にするか、明日Debian勉強会があるので、そこでても構いません。</p>
+</section><section class="slide level2">
+
+<ul>
+<li>お仕事で、Linux Kernel の TCPアルゴリズムを触るお仕事をしたから。(話す資格はあるだろう)</li>
+<li>キーワードに、&quot;Rasberry Pi&quot;というものがあったから。(Rasbian)</li>
+<li>Linuxカーネルを勉強するにあたって、ソースコードだけでなく手元に動く環境を作るだろうから、その時にDebianまたはその派生が選ばれるように情報提供をしたかった。</li>
+<li>組み込みでDebianや由来のツ－ルは使われている。</li>
+</ul>
+</section></section>
+<section><section id="アンケートタイム" class="titleslide slide level1"><h1>アンケートタイム</h1></section><section class="slide level2">
+
+<ul>
+<li>システム・プログラミングという言葉を知っていますか</li>
+<li>システム・プログラミングしたことありますか</li>
+<li>バイナリアンって言葉知ってますか?</li>
+<li>あなたは、バイナリアンですか? またはバイナリアンになりたいですか?</li>
+<li>あなたは、Computer Scienceを学びましたか? (学校で? 独学で?)</li>
+</ul>
+<p>続く</p>
+</section><section class="slide level2">
+
+<ul>
+<li>Gitって知ってますか?</li>
+<li>Githubでなく生でGit使えますか?</li>
+<li>C言語を使ってプログラムを作って、gcc, llvmなどでコンバイルしたことありますか?</li>
+<li>gdbを使ったことありますか?</li>
+<li>どの位のサイズのソースコードを読んだ経験がありますか?</li>
+</ul>
+<p>続く</p>
+</section><section class="slide level2">
+
+<ul>
+<li>具体的にKernelのどこに興味があるか特定できますか</li>
+<li>どれぐらい、自分の勉強に時間をかけていますか</li>
+<li>英文読むときにこまった経験ありますか?</li>
+</ul>
+</section></section>
+<section><section id="今日のお品書き" class="titleslide slide level1"><h1>今日のお品書き</h1></section><section class="slide level2">
+
+<ol type="1">
+<li>Linux マシンを持とう。</li>
+<li>非力な環境を振り回して、限界を知る。</li>
+<li>死んだ情報 vs 生きた情報</li>
+<li>書籍紹介</li>
+<li>ソースコードを読むには</li>
+<li>どうやって読む?</li>
+<li>人は動かないプログラムに我慢できない</li>
+</ol>
+</section><section class="slide level2">
+
+<p>Debian</p>
+<ol type="1">
+<li>Debianの紹介</li>
+<li>Kernelに関係するパッケージ</li>
+<li>読むためのツール</li>
+<li>tool-chain</li>
+<li>Debian由来のツール</li>
+<li>カーネルをコンバイル</li>
+<li>ソースコードデバッグ</li>
+<li>qemu + gdb</li>
+</ol>
+</section><section class="slide level2">
+
+<p>Linux TCP module</p>
+</section><section class="slide level2">
+
+<h3 id="linuxなマシンを持とう">Linuxなマシンを持とう。</h3>
+<p>私は毎日使っている。使っている時間が増えると、それなりにノウハウもたまる。</p>
+<ul>
+<li>今から紹介するツールは、主にLinux上、もっと特定すると Debian系について念頭に置いている</li>
+</ul>
+</section><section class="slide level2">
+
+<ul>
+<li>Linux kernel buildするでしょ?</li>
+<li>Buildしたら動かすよね?</li>
+<li>ソースコードレベルデバッグしたい? いくつか方法があるけど。</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="非力な環境を振り回して限界を知る">非力な環境を振り回して、限界を知る。</h3>
+<ul>
+<li>軽トラでドリフトが楽しい理由 - 限界値が低くて比較的安全にドリフトできる</li>
+<li>非力な環境を飽和させて、限界の挙動を学習できる。</li>
+<li>予測と実績を計測しやすい -- Computer Science の知見がいる。</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="死んだ情報-vs-生きた情報">死んだ情報 vs 生きた情報</h3>
+<p>このタイトルは釣りです。今すぐ役立つ情報は歴史の変化で風化する。</p>
+<ul>
+<li>変化 --- Boot方式の変更 UEFI や systemd 場合によっては組み込み系も大変だ</li>
+<li>抽象度の高い情報が役立つには時間がかかる。だから両方やれ。</li>
+<li>古い環境があるうちにやっておこう。 時間との競争</li>
+<li>書籍はどれぐらい役に立つか。理論と実践:手を動かさないとなにもわからない</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="書籍紹介">書籍紹介</h3>
+<p>ほんとうは、いっばいある。でも、1つあげるなら、これかなと</p>
+<ul>
+<li><p>Code Reading 毎日コミュニケーションズ - C言語を使って大規模なプログラムを読んだことないなら</p></li>
+<li><p>Linuxのブートブロセスをみる ASCII - これで自分になにが足りないのかを知る。</p></li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="下準備">下準備</h3>
+<ul>
+<li>ソースコード展開</li>
+<li>どうやって追っかける? 2つの方法</li>
+<li>頭の中だけで完結する?</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="ソースコードを読むためのツール">ソースコードを読むためのツール</h3>
+<ul>
+<li>GNU Global</li>
+<li>Source Code search engine: Milkode, Gonzuiとかもあったが</li>
+<li>Ctag</li>
+<li>git grep</li>
+</ul>
+<p>などなど。</p>
+</section><section class="slide level2">
+
+<h3 id="どうやって読む-2つの方法">どうやって読む? 2つの方法</h3>
+<ol type="1">
+<li>自分の興味が定まっているなら、そのエントリーボイントから、検索しまくって、時短で読む(下準備ができて、基礎ができている人向け)</li>
+<li>「ひらメソッド」ボムアップで、ソースコードを読む。</li>
+</ol>
+<p>相反しているように見えるが?</p>
+</section><section class="slide level2">
+
+<p>ひとの理解をそのまま飲み込むと、痛い目に会うことがある。自分で試して確認しよう。</p>
+<p>どのぐらい頑張る?常に最新の状況を追えるか?</p>
+</section><section class="slide level2">
+
+<h3 id="人は実行できないプログラムに我慢できない">人は実行できないプログラムに我慢できない</h3>
+<ol type="1">
+<li>机上でソースコードを読みつづける</li>
+<li>動いているイメージが持てないので、飽きる。</li>
+<li>ソースコードを読むのを止めてしまう</li>
+</ol>
+<p>では、どうするか?</p>
+</section><section class="slide level2">
+
+<ul>
+<li>仕事にする。</li>
+<li>ソースコードだけで、動くのがイメージてきるようになる</li>
+<li><p>動かして、痕跡をたどりながら読む。</p></li>
+<li>printk</li>
+<li><p>gdb</p></li>
+</ul>
+</section></section>
+<section><section id="debian" class="titleslide slide level1"><h1>Debian</h1></section><section class="slide level2">
+
+<h3 id="debian-の紹介">Debian の紹介</h3>
+<p>先ほどの問題への私なりの答えは、紹介のあとに。</p>
+<ul>
+<li><p><a href="https://www.debian.org/">Debian -- ユニバーサルオペレーティングシステム</a></p></li>
+<li>非営利の団体が、汎用のOSを作っている。企業ではないので、買収などではなくならない。</li>
+<li>Ubuntu, Rasbian を含む多くの派生ディストリビューションを持っている。--- それはなぜか?</li>
+<li><p>もちろん組み込みのベースとしても使われている</p></li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="kernelに関係するパッケージ">kernelに関係するパッケージ</h3>
+<ul>
+<li>linux-image</li>
+<li>linux-source</li>
+<li>linux-doc</li>
+<li>あとはモジュール</li>
+<li>blob --- Debian してはソースコードがないものは入れたくない。が、ユーザーの利便性のために置いてある。</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="読むためのツール">読むためのツール</h3>
+<ul>
+<li>sphinxでドキュメントをビルド</li>
+<li>apt install global</li>
+<li>apt install exuberant-ctags</li>
+<li>apt install cscope</li>
+<li>milkodeは、パッケージになってないので、必要ならコンテナか生で、インストールしましょう。</li>
+</ul>
+<p>Debianには、他にもソースコード読むのに役立つツ－ルがあるが紹介が追いついていない。apt-cache search コマンドなどで探してみよう。</p>
+</section><section class="slide level2">
+
+<ul>
+<li>/boot/config-4.12.0-2-amd64 - カーネルの設定が置いてある。</li>
+<li>/boot/System.map-4.12.0-2-amd64 - シンボルが置いてある</li>
+<li>/boot/initrd.img-4.12.0-2-amd64 - 起動時に必要なファイルをcpioで固めてある</li>
+<li>/boot/vmlinuz-4.12.0-2-amd64 - カーネルイメージ</li>
+<li>grubもbootの下にある。</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="tool-chain">tool-chain</h3>
+<ul>
+<li>クロスビルドしないなら、apt install build-essentialで最低限のビルド環境は整う</li>
+<li>gcc</li>
+<li>llvm</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="debian-由来のツールや利点など">Debian 由来のツールや利点など</h3>
+<ul>
+<li>debootstrap</li>
+<li>整備された、ツール群と、開発環境を揃えることができる。</li>
+<li>Licenseの精査 これが自由につかっていい保証をしている。</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="カーネルをコンバイルする">カーネルをコンバイルする</h3>
+<ul>
+<li><a href="https://debian-handbook.info/browse/ja-JP/stable/sect.kernel-compilation.html">8.10. カーネルのコンパイル</a></li>
+<li>上記では情報が足りない場合は、apt install debian-kernel-handbook-ja を実行してから ブラウザに ///usr/share/doc/debian-kernel-handbook-ja/kernel-handbook.ja.html/index.html と入力するか、w3mなどを使うとよいでしょう。</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="ソースコードデバッグ">ソースコードデバッグ</h3>
+<p>方法か洗練というか便利になってきているので、updateをしなくては。</p>
+<ul>
+<li>qemu-kvm (qemu-system-x86_64とか)に、gdbとの連携ができるようになっていた。</li>
+<li>KernelのKGDBは、別のマシンとシリアルやTCPで通信してGDBが使えるようになる</li>
+<li>動かしているカーネルのと同じ(a.k.a 生成した)linux-sourceバッケージ</li>
+<li>同上のlinux-image-amd64-dbg -- amd64はアーキテクチャーによって異なる。</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="qemu-gdb">qemu + gdb</h3>
+<ul>
+<li>アーキテクチャーを選べる - HostはAMD64, targetはarm</li>
+<li>man qemu-system で、-s オプションと、-gdbオプションを確認せよ。</li>
+<li>gdbに、デバッグシンボル、ソースコードの位置をセットする</li>
+<li>動かす。</li>
+</ul>
+</section></section>
+<section><section id="linux-tcp-module" class="titleslide slide level1"><h1>Linux TCP module</h1></section><section class="slide level2">
+
+<p>TCP/IPをComputer Scienceでやったひといますか?</p>
+</section><section class="slide level2">
+
+<h3 id="linux-はtcpのアルゴリズムを変更できる">Linux は、TCPのアルゴリズムを変更できる。</h3>
+<p>Renoとか。ただしこれをさわるとTCPの論文を読んで何を得て、何を失って、どういうときにネットワークが輻輳するのか。の比較検討をしてほしい。まずはバッファの量などから始まり、ネットワーク品質などを確認してからのほうがいい。</p>
+<p>アルゴリズムについては、英語で論文がある。技術書は一般的なことしかカバーできないいうのがよくわかる。</p>
+</section></section>
+<section><section id="最後に" class="titleslide slide level1"><h1>最後に</h1></section><section class="slide level2">
+
+<ul>
+<li>ライセンス: このスライドは、GPLv2を適用します。</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
