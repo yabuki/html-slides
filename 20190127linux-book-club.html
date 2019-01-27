@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="矢吹幸治(yabuki@netfort.gr.jp)">
+  <title>Linux を使う系読書会</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Linux を使う系</br>読書会</h1>
+  <p class="author">矢吹幸治(yabuki@netfort.gr.jp)</p>
+  <p class="date">2019/01/27</p>
+</section>
+
+<section class="slide level2">
+
+<p>こんにちは</p>
+<p>Debian GNU/Linux </br> と </br> LILO </br> 方面からきました。</br> </br> 矢吹です。</p>
+</section>
+<section class="slide level2">
+
+<p>最初に</p>
+<p>質問は、後でまとめて受けます。</p>
+</section>
+<section><section id="who-am-i" class="title-slide slide level1"><h1>Who am I</h1></section><section class="slide level2">
+
+<ul>
+<li>LILO は2回めから参加</li>
+<li>Debian GNU/Linux は、bo-jp から</li>
+<li>職業プログラマ / マネージメントもする Kiire Japan 代表</li>
+</ul>
+</section></section>
+<section><section id="アンケートの時間" class="title-slide slide level1"><h1>アンケートの時間</h1></section><section class="slide level2">
+
+<ul>
+<li>参加者の方で職業プログラマの方</li>
+<li>どこかでComputer Science を勉強された方</li>
+<li>アルゴリズムは得意だ。</li>
+<li>データ構造は試行錯誤する?</li>
+<li>Mooc って聞いたことがある</li>
+<li>Mooc を使ったことがある</li>
+<li>読書の習慣がある?</li>
+</ul>
+</section><section class="slide level2">
+
+<p>ガチで基本データ構造の勉強がしたい。</p>
+</section></section>
+<section><section id="みんなのデータ構造" class="title-slide slide level1"><h1>『みんなのデータ構造』</h1></section><section class="slide level2">
+
+<ul>
+<li><a href="https://www.lambdanote.com/collections/custom-collection">『みんなのデータ構造』 – 技術書出版と販売のラムダノート</a></li>
+</ul>
+<p>新進気鋭の出版社のラムダノートさんが本でだしていらっしゃいます。</p>
+<p>これは、自由につかえるライセンスでかかれた、ものなので、これで勉強するのがおすすめです。</p>
+</section><section class="slide level2">
+
+<p>font の埋め込みが上手く行っていないので、私の Android tablet だと一部残念なことになっていました。</p>
+<p>そこで、uplatex で IPAex font を埋め込む設定にして build できるようにしたもの (by Debian Buster)</p>
+<p>が <a href="https://github.com/yabuki/ods">yabuki/ods: Open Data Structures の日本語ソースコード</a> に置いてあります。</p>
+</section><section class="slide level2">
+
+<p>まずは、face to face の読書会をして、obs studio で記録する。また ツイキャスを使ってみるとか 音声だけなら、Discord を使うなどの試行錯誤をしてmoocほど重くなく、ノウハウを貯めてみたい。</p>
+<p>最初は、場所と時間を同期させてみる。次は、ひとつ制約を外す、</p>
+<p>内容は結構ハードなので、ガチに勉強する読書会になるとおもいます。</p>
+</section><section class="slide level2">
+
+<p>会場での感触では、まず3日間ぐらいの連休があったときに、参加者で「合宿」して、短期決戦で 完遂するのが良さそう。</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
