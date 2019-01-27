@@ -73,3 +73,9 @@ font の埋め込みが上手く行っていないので、私の Android tablet
 
 会場での感触では、まず3日間ぐらいの連休があったときに、参加者で「合宿」して、短期決戦で
 完遂するのが良さそう。
+
+----
+
+この資料は、私か作成した部分については、CC-BY-SA 3.0 とする。下記参照
+
+[Creative Commons — 表示 - 継承 3.0 非移植 — CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.ja)
