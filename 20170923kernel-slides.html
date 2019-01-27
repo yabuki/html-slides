@@ -9,7 +9,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="reveal.js/css/reveal.css">
-  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
   <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
   <!-- Printing and PDF exports -->
   <script>
@@ -27,28 +32,28 @@
   <div class="reveal">
     <div class="slides">
 
-<section>
+<section id="title-slide">
   <h1 class="title">Linux Kernel の勉強って何だ?</h1>
   <p class="author">矢吹幸治(yabuki@netfort.gr.jp)</p>
   <p class="date">2017/09/23</p>
 </section>
 
-<section><section id="こんにちは" class="titleslide slide level1"><h1>こんにちは</h1></section></section>
-<section><section id="debian-gnulinux-方面から来ました-矢吹です" class="titleslide slide level1"><h1>Debian GNU/Linux </br>方面から来ました。 </br></br>矢吹です。</h1></section></section>
-<section><section id="なんでやねん" class="titleslide slide level1"><h1>なんでやねん!?</h1></section></section>
-<section><section id="kernelというgenericな話を私がするのは" class="titleslide slide level1"><h1>KernelというGenericな話を私がするのは?</h1></section><section class="slide level2">
+<section><section id="こんにちは" class="title-slide slide level1"><h1>こんにちは</h1></section></section>
+<section><section id="debian-gnulinux-方面から来ました-矢吹です" class="title-slide slide level1"><h1>Debian GNU/Linux </br>方面から来ました。 </br></br>矢吹です。</h1></section></section>
+<section><section id="なんでやねん" class="title-slide slide level1"><h1>なんでやねん!?</h1></section></section>
+<section><section id="kernelというgenericな話を私がするのは" class="title-slide slide level1"><h1>KernelというGenericな話を私がするのは?</h1></section><section class="slide level2">
 
 <p>最初に質問は随時受け付けますが、時間の関係があるので、時間がかかりそうな質問は後にするか、明日Debian勉強会があるので、そこでても構いません。</p>
 </section><section class="slide level2">
 
 <ul>
 <li>お仕事で、Linux Kernel の TCPアルゴリズムを触るお仕事をしたから。(話す資格はあるだろう)</li>
-<li>キーワードに、&quot;Rasberry Pi&quot;というものがあったから。(Rasbian)</li>
+<li>キーワードに、“Rasberry Pi”というものがあったから。(Rasbian)</li>
 <li>Linuxカーネルを勉強するにあたって、ソースコードだけでなく手元に動く環境を作るだろうから、その時にDebianまたはその派生が選ばれるように情報提供をしたかった。</li>
 <li>組み込みでDebianや由来のツ－ルは使われている。</li>
 </ul>
 </section></section>
-<section><section id="アンケートタイム" class="titleslide slide level1"><h1>アンケートタイム</h1></section><section class="slide level2">
+<section><section id="アンケートタイム" class="title-slide slide level1"><h1>アンケートタイム</h1></section><section class="slide level2">
 
 <ul>
 <li>システム・プログラミングという言葉を知っていますか</li>
@@ -76,7 +81,7 @@
 <li>英文読むときにこまった経験ありますか?</li>
 </ul>
 </section></section>
-<section><section id="今日のお品書き" class="titleslide slide level1"><h1>今日のお品書き</h1></section><section class="slide level2">
+<section><section id="今日のお品書き" class="title-slide slide level1"><h1>今日のお品書き</h1></section><section class="slide level2">
 
 <ol type="1">
 <li>Linux マシンを持とう。</li>
@@ -123,14 +128,14 @@
 <ul>
 <li>軽トラでドリフトが楽しい理由 - 限界値が低くて比較的安全にドリフトできる</li>
 <li>非力な環境を飽和させて、限界の挙動を学習できる。</li>
-<li>予測と実績を計測しやすい -- Computer Science の知見がいる。</li>
+<li>予測と実績を計測しやすい – Computer Science の知見がいる。</li>
 </ul>
 </section><section class="slide level2">
 
 <h3 id="死んだ情報-vs-生きた情報">死んだ情報 vs 生きた情報</h3>
 <p>このタイトルは釣りです。今すぐ役立つ情報は歴史の変化で風化する。</p>
 <ul>
-<li>変化 --- Boot方式の変更 UEFI や systemd 場合によっては組み込み系も大変だ</li>
+<li>変化 — Boot方式の変更 UEFI や systemd 場合によっては組み込み系も大変だ</li>
 <li>抽象度の高い情報が役立つには時間がかかる。だから両方やれ。</li>
 <li>古い環境があるうちにやっておこう。 時間との競争</li>
 <li>書籍はどれぐらい役に立つか。理論と実践:手を動かさないとなにもわからない</li>
@@ -192,14 +197,14 @@
 <li><p>gdb</p></li>
 </ul>
 </section></section>
-<section><section id="debian" class="titleslide slide level1"><h1>Debian</h1></section><section class="slide level2">
+<section><section id="debian" class="title-slide slide level1"><h1>Debian</h1></section><section class="slide level2">
 
 <h3 id="debian-の紹介">Debian の紹介</h3>
 <p>先ほどの問題への私なりの答えは、紹介のあとに。</p>
 <ul>
-<li><p><a href="https://www.debian.org/">Debian -- ユニバーサルオペレーティングシステム</a></p></li>
+<li><p><a href="https://www.debian.org/">Debian – ユニバーサルオペレーティングシステム</a></p></li>
 <li>非営利の団体が、汎用のOSを作っている。企業ではないので、買収などではなくならない。</li>
-<li>Ubuntu, Rasbian を含む多くの派生ディストリビューションを持っている。--- それはなぜか?</li>
+<li>Ubuntu, Rasbian を含む多くの派生ディストリビューションを持っている。— それはなぜか?</li>
 <li><p>もちろん組み込みのベースとしても使われている</p></li>
 </ul>
 </section><section class="slide level2">
@@ -210,7 +215,7 @@
 <li>linux-source</li>
 <li>linux-doc</li>
 <li>あとはモジュール</li>
-<li>blob --- Debian してはソースコードがないものは入れたくない。が、ユーザーの利便性のために置いてある。</li>
+<li>blob — Debian してはソースコードがないものは入れたくない。が、ユーザーの利便性のために置いてある。</li>
 </ul>
 </section><section class="slide level2">
 
@@ -263,7 +268,7 @@
 <li>qemu-kvm (qemu-system-x86_64とか)に、gdbとの連携ができるようになっていた。</li>
 <li>KernelのKGDBは、別のマシンとシリアルやTCPで通信してGDBが使えるようになる</li>
 <li>動かしているカーネルのと同じ(a.k.a 生成した)linux-sourceバッケージ</li>
-<li>同上のlinux-image-amd64-dbg -- amd64はアーキテクチャーによって異なる。</li>
+<li>同上のlinux-image-amd64-dbg – amd64はアーキテクチャーによって異なる。</li>
 </ul>
 </section><section class="slide level2">
 
@@ -275,7 +280,7 @@
 <li>動かす。</li>
 </ul>
 </section></section>
-<section><section id="linux-tcp-module" class="titleslide slide level1"><h1>Linux TCP module</h1></section><section class="slide level2">
+<section><section id="linux-tcp-module" class="title-slide slide level1"><h1>Linux TCP module</h1></section><section class="slide level2">
 
 <p>TCP/IPをComputer Scienceでやったひといますか?</p>
 </section><section class="slide level2">
@@ -284,7 +289,7 @@
 <p>Renoとか。ただしこれをさわるとTCPの論文を読んで何を得て、何を失って、どういうときにネットワークが輻輳するのか。の比較検討をしてほしい。まずはバッファの量などから始まり、ネットワーク品質などを確認してからのほうがいい。</p>
 <p>アルゴリズムについては、英語で論文がある。技術書は一般的なことしかカバーできないいうのがよくわかる。</p>
 </section></section>
-<section><section id="最後に" class="titleslide slide level1"><h1>最後に</h1></section><section class="slide level2">
+<section><section id="最後に" class="title-slide slide level1"><h1>最後に</h1></section><section class="slide level2">
 
 <ul>
 <li>ライセンス: このスライドは、GPLv2を適用します。</li>
@@ -303,12 +308,14 @@
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
 
         // Optional reveal.js plugins
         dependencies: [
           { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
-              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
         ]
       });
     </script>
