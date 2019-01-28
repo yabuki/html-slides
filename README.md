@@ -17,7 +17,7 @@ see also Makefile
 
 # 閲覧方法
 
-[https://yabuki.github.io/html-slides/](https://yabuki.github.io/html-slides/) から閲覧してください。
+- [https://yabuki.github.io/html-slides/](https://yabuki.github.io/html-slides/) から閲覧してください。
 
 # 一覧
 
