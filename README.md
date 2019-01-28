@@ -19,5 +19,5 @@ see also Makefile
 
 新しいものが上にくるスタイル
 
-- <./20190127linux-book-club.html>
-- <./20170923kernel-slides.html>
+- [20190127linux-book-club.html](./20190127linux-book-club.html)
+- [20170923kernel-slides.html](./20170923kernel-slides.html)
