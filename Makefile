@@ -1,3 +1,13 @@
+
+# 作業手順
+#
+# 1.ファイル名の決定
+# 2.html-sides に追加
+# 3.entryを追加
+# 4.ALLに追加
+# 5.README.mdに追記する。
+#
+
 # rmするときの対象
 html-slides = 20170923kernel-slides.html 20190127linux-book-club.html
 
