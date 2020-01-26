@@ -23,5 +23,6 @@ see also Makefile
 
 新しいものが上にくるスタイル
 
+- [20200126知ってうれしかったソフトウエア3つ](./20200126-WhatIwantedIknewSoftware.html)
 - [20190127linux-book-club.html](./20190127linux-book-club.html)
 - [20170923kernel-slides.html](./20170923kernel-slides.html)
